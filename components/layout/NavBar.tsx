@@ -2,27 +2,29 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { FaBars, FaXmark } from "react-icons/fa6";
-
-export interface NavLink {
-  id: string;
-  label: string;
-  href: string;
-}
-
-export interface NavbarData {
-  logoText: string;
-  contactBtnText: string;
-  contactHref: string;
-  links: NavLink[];
-}
+import { FaBars, FaXmark, FaGlobe, FaChevronDown } from "react-icons/fa6";
+import { NavbarData, Language } from "@/data/navbarData";
 
 interface NavbarProps {
   data: NavbarData;
+  currentLang?: Language;
+  onLanguageChange?: (lang: Language) => void;
 }
 
-export default function Navbar({ data }: NavbarProps) {
+export default function Navbar({
+  data,
+  currentLang = "es",
+  onLanguageChange,
+}: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isLangOpen, setIsLangOpen] = useState(false);
+
+  const handleSelectLang = (lang: Language) => {
+    if (onLanguageChange) {
+      onLanguageChange(lang);
+    }
+    setIsLangOpen(false);
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-[var(--color-headers)]/20 bg-[var(--color-primary)]/90 backdrop-blur-md">
@@ -38,7 +40,7 @@ export default function Navbar({ data }: NavbarProps) {
           </Link>
         </div>
 
-        {/* Enlaces Desktop */}
+        {/* Enlaces Desktop (Incluye "Contacto") */}
         <nav className="hidden md:flex md:items-center md:gap-8">
           {data.links.map((link) => (
             <Link
@@ -51,15 +53,51 @@ export default function Navbar({ data }: NavbarProps) {
           ))}
         </nav>
 
-        {/* Botón Acción + Toggle Mobile */}
+        {/* Desplegable de Idioma + Menú Hamburguesa */}
         <div className="flex items-center gap-3">
-          <Link
-            href={data.contactHref}
-            className="font-body rounded-lg bg-[var(--color-btn-primary)] px-4 py-2 text-sm font-semibold text-[var(--color-text-main)] transition-all hover:bg-[var(--color-btn-primary)]/80 hover:shadow-lg hover:shadow-[var(--color-btn-primary)]/20 active:scale-95"
-          >
-            {data.contactBtnText}
-          </Link>
+          
+          {/* Selector de Idioma (Visible en todos los dispositivos) */}
+          <div className="relative">
+            <button
+              onClick={() => setIsLangOpen(!isLangOpen)}
+              className="font-body flex items-center gap-1.5 rounded-lg border border-[var(--color-headers)]/30 bg-[var(--color-secondary)] px-3 py-1.5 text-xs font-semibold text-[var(--color-text-main)] transition-all hover:border-[var(--color-btn-secondary)] hover:text-[var(--color-btn-secondary)] sm:text-sm"
+              aria-label="Seleccionar Idioma"
+            >
+              <FaGlobe className="size-3.5 text-[var(--color-btn-secondary)]" />
+              <span className="uppercase">{currentLang}</span>
+              <FaChevronDown className="size-2.5 opacity-70" />
+            </button>
 
+            {/* Menú Desplegable */}
+            {isLangOpen && (
+              <div className="absolute right-0 mt-2 w-28 overflow-hidden rounded-md border border-[var(--color-headers)]/20 bg-[var(--color-secondary)] shadow-xl z-50">
+                <button
+                  onClick={() => handleSelectLang("es")}
+                  className={`font-body flex w-full items-center justify-between px-3 py-2 text-xs font-medium transition-colors hover:bg-[var(--color-primary)] ${
+                    currentLang === "es"
+                      ? "text-[var(--color-btn-secondary)] font-bold"
+                      : "text-[var(--color-text-main)]"
+                  }`}
+                >
+                  <span>Español</span>
+                  <span>ES</span>
+                </button>
+                <button
+                  onClick={() => handleSelectLang("en")}
+                  className={`font-body flex w-full items-center justify-between px-3 py-2 text-xs font-medium transition-colors hover:bg-[var(--color-primary)] ${
+                    currentLang === "en"
+                      ? "text-[var(--color-btn-secondary)] font-bold"
+                      : "text-[var(--color-text-main)]"
+                  }`}
+                >
+                  <span>English</span>
+                  <span>EN</span>
+                </button>
+              </div>
+            )}
+          </div>
+
+          {/* Menú Toggle Mobile */}
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="rounded-lg p-2 text-[var(--color-text-main)] hover:bg-[var(--color-secondary)] md:hidden"
@@ -67,6 +105,7 @@ export default function Navbar({ data }: NavbarProps) {
           >
             {isOpen ? <FaXmark size={22} /> : <FaBars size={20} />}
           </button>
+
         </div>
       </div>
 

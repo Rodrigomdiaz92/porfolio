@@ -47,3 +47,37 @@ export const carreraDataEs: CarreraSectionData = {
     },
   ],
 };
+
+export const carreraDataEn: CarreraSectionData = {
+  title: "Career & Experience",
+  subtitle: "Professional trajectory focused on web development, technical leadership, mentoring, and digital product management.",
+  items: [
+    {
+      id: "sailing-the-world",
+      role: "Lead Frontend Developer & Digital Product Manager",
+      company: "Sailing The World",
+      startDate: "2023",
+      endDate: "Present",
+      description: "Technical leadership in creating the web portal and booking system for a catamaran fleet in San Blas Islands. UX/UI optimization and site performance enhancement.",
+      skills: ["React.js", "Next.js", "TypeScript", "Tailwind CSS", "UX/UI Design", "SEO"],
+    },
+    {
+      id: "frontend-mentor",
+      role: "Frontend Web Mentor & Tutor",
+      company: "Educación IT / Independent Courses",
+      startDate: "2022",
+      endDate: "Present",
+      description: "Guiding students through modern web technologies, code best practices, Git Flow, and preparing them for job market insertion.",
+      skills: ["JavaScript (ES6+)", "React.js", "HTML5 & CSS3", "Git & GitHub", "Clean Code"],
+    },
+    {
+      id: "freelance-dev",
+      role: "Freelance Web Developer",
+      company: "Independent Projects",
+      startDate: "2021",
+      endDate: "2023",
+      description: "Design and development of custom e-commerce stores, landing pages, and admin dashboards for international clients across various industries.",
+      skills: ["React.js", "REST APIs", "Firebase", "Bootstrap", "Responsive Design"],
+    },
+  ],
+};

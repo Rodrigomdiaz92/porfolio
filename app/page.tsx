@@ -1,27 +1,22 @@
-import Contacto from "@/components/Contacto";
+"use client";
+
 import Presentacion from "@/components/Presentacion/Presentacion";
-import Proyectos from "@/components/Proyectos/Proyectos";
-import { projectsDataEs } from "@/data/projectsData";
-import Image from "next/image";
-import { carreraDataEs } from "@/data/carreraData";
-import Carrera from "@/components/Carrera";
 import StatsCharts from "@/components/StatsCharts";
-import { skillsDataEs } from "@/data/skillsData";
-import { contactoDataEs } from "@/data/contactoData";
-
-
-// Datos de prueba (luego vendrán de tu sistema i18n)
+import Proyectos from "@/components/Proyectos/Proyectos";
+import Carrera from "@/components/Carrera";
+import Contacto from "@/components/Contacto";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Home() {
+  const { projectsData, skillsData, carreraData, contactoData } = useLanguage();
+
   return (
-    <div className="">
-      <main className="">        
-        <Presentacion/>
-        <StatsCharts skillsData={skillsDataEs} projectsData={projectsDataEs} />
-        <Proyectos data={projectsDataEs} />
-        <Carrera data={carreraDataEs} />
-        <Contacto data={contactoDataEs} />       
-      </main>
-    </div>
+    <main>
+      <Presentacion />
+      <StatsCharts skillsData={skillsData} projectsData={projectsData} />
+      <Proyectos data={projectsData} />
+      <Carrera data={carreraData} />
+      <Contacto data={contactoData} />
+    </main>
   );
 }

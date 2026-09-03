@@ -16,13 +16,12 @@ import {
 } from "recharts";
 import { SkillsSectionData } from "@/data/skillsData";
 import { ProjectsSectionData } from "@/data/projectsData";
+import { useLanguage } from "@/context/LanguageContext";
 import { FaChartPie, FaChartColumn, FaArrowRight } from "react-icons/fa6";
 
 interface StatsChartsProps {
   skillsData: SkillsSectionData;
   projectsData: ProjectsSectionData;
-  title?: string;
-  subtitle?: string;
 }
 
 const CATEGORY_COLORS = ["#AB64F2", "#3865F2", "#35A9F2", "#7E22CE", "#EC4899"];
@@ -30,10 +29,38 @@ const CATEGORY_COLORS = ["#AB64F2", "#3865F2", "#35A9F2", "#7E22CE", "#EC4899"];
 export default function StatsCharts({
   skillsData,
   projectsData,
-  title = "Resumen de Tecnologías & Proyectos",
-  subtitle = "Visualización analítica sobre la distribución de mis habilidades y el uso de tecnologías en proyectos.",
 }: StatsChartsProps) {
-  
+  const { language } = useLanguage();
+
+  // Diccionario local para etiquetas según el idioma activo
+  const labels = useMemo(() => {
+    return language === "es"
+      ? {
+          title: "Resumen de Tecnologías & Proyectos",
+          subtitle:
+            "Visualización analítica sobre la distribución de mis habilidades y el uso de tecnologías en proyectos.",
+          skillsChartTitle: "Distribución de Skills",
+          skillsChartTooltipLabel: "Proporción",
+          skillsBtn: "Ver detalle de Skills",
+          projectsChartTitle: "Tecnologías más Usadas",
+          projectsChartTooltipLabel: "Frecuencia",
+          projectsChartTooltipUnit: "proyecto(s)",
+          projectsBtn: "Ver todos los Proyectos",
+        }
+      : {
+          title: "Technologies & Projects Overview",
+          subtitle:
+            "Analytical visualization of skills distribution and technology usage across projects.",
+          skillsChartTitle: "Skills Distribution",
+          skillsChartTooltipLabel: "Proportion",
+          skillsBtn: "View Skills detail",
+          projectsChartTitle: "Most Used Technologies",
+          projectsChartTooltipLabel: "Frequency",
+          projectsChartTooltipUnit: "project(s)",
+          projectsBtn: "View all Projects",
+        };
+  }, [language]);
+
   const dynamicSkillsChart = useMemo(() => {
     const totalSkills = skillsData.categories.reduce(
       (acc, cat) => acc + cat.skills.length,
@@ -77,15 +104,14 @@ export default function StatsCharts({
       <div className="mx-auto max-w-7xl">
         <div className="flex flex-col items-center text-center">
           <h2 className="font-h2 text-2xl font-bold tracking-tight text-[var(--color-headers)] sm:text-4xl">
-            {title}
+            {labels.title}
           </h2>
           <p className="font-subtitle mt-2 max-w-2xl text-xs text-[var(--color-text-main)]/80 sm:mt-3 sm:text-lg">
-            {subtitle}
+            {labels.subtitle}
           </p>
         </div>
 
         <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:gap-8">
-          
           {/* Tarjeta 1: Gráfico de Torta */}
           <div className="flex flex-col justify-between rounded-lg border border-[var(--color-headers)]/20 bg-[var(--color-secondary)] p-4 shadow-md sm:rounded-xl sm:p-6 sm:shadow-lg">
             <div>
@@ -93,7 +119,7 @@ export default function StatsCharts({
                 <div className="flex items-center gap-2">
                   <FaChartPie className="size-4 text-[var(--color-btn-secondary)] sm:size-5" />
                   <h3 className="font-subtitle text-base font-bold text-[var(--color-text-main)] sm:text-lg">
-                    Distribución de Skills
+                    {labels.skillsChartTitle}
                   </h3>
                 </div>
               </div>
@@ -122,7 +148,10 @@ export default function StatsCharts({
                         color: "#FFFFFF",
                         fontSize: "12px",
                       }}
-                      formatter={(value?: unknown) => [`${value ?? 0}%`, "Proporción"]}
+                      formatter={(value?: unknown) => [
+                        `${value ?? 0}%`,
+                        labels.skillsChartTooltipLabel,
+                      ]}
                     />
                   </PieChart>
                 </ResponsiveContainer>
@@ -148,7 +177,7 @@ export default function StatsCharts({
                 href="#skills"
                 className="font-body inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[var(--color-primary)] px-4 py-2.5 text-xs font-semibold text-[var(--color-btn-secondary)] border border-[var(--color-btn-secondary)]/30 transition-all hover:bg-[var(--color-btn-secondary)] hover:text-[var(--color-primary)] sm:text-sm"
               >
-                <span>Ver detalle de Skills</span>
+                <span>{labels.skillsBtn}</span>
                 <FaArrowRight className="size-3" />
               </Link>
             </div>
@@ -161,7 +190,7 @@ export default function StatsCharts({
                 <div className="flex items-center gap-2">
                   <FaChartColumn className="size-4 text-[var(--color-btn-secondary)] sm:size-5" />
                   <h3 className="font-subtitle text-base font-bold text-[var(--color-text-main)] sm:text-lg">
-                    Tecnologías más Usadas
+                    {labels.projectsChartTitle}
                   </h3>
                 </div>
               </div>
@@ -172,7 +201,11 @@ export default function StatsCharts({
                     data={dynamicProjectsChart}
                     margin={{ top: 10, right: 10, left: -20, bottom: 25 }}
                   >
-                    <CartesianGrid strokeDasharray="3 3" stroke="#AB64F2" opacity={0.15} />
+                    <CartesianGrid
+                      strokeDasharray="3 3"
+                      stroke="#AB64F2"
+                      opacity={0.15}
+                    />
                     <XAxis
                       dataKey="technology"
                       stroke="#FFFFFF"
@@ -182,7 +215,12 @@ export default function StatsCharts({
                       angle={-20}
                       textAnchor="end"
                     />
-                    <YAxis stroke="#FFFFFF" fontSize={10} tickLine={false} allowDecimals={false} />
+                    <YAxis
+                      stroke="#FFFFFF"
+                      fontSize={10}
+                      tickLine={false}
+                      allowDecimals={false}
+                    />
                     <Tooltip
                       contentStyle={{
                         backgroundColor: "#1E0326",
@@ -191,7 +229,10 @@ export default function StatsCharts({
                         color: "#FFFFFF",
                         fontSize: "12px",
                       }}
-                      formatter={(value?: unknown) => [`${value ?? 0} proyecto(s)`, "Frecuencia"]}
+                      formatter={(value?: unknown) => [
+                        `${value ?? 0} ${labels.projectsChartTooltipUnit}`,
+                        labels.projectsChartTooltipLabel,
+                      ]}
                     />
                     <Bar dataKey="count" fill="#35A9F2" radius={[4, 4, 0, 0]} />
                   </BarChart>
@@ -204,12 +245,11 @@ export default function StatsCharts({
                 href="#proyectos"
                 className="font-body inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[var(--color-primary)] px-4 py-2.5 text-xs font-semibold text-[var(--color-btn-secondary)] border border-[var(--color-btn-secondary)]/30 transition-all hover:bg-[var(--color-btn-secondary)] hover:text-[var(--color-primary)] sm:text-sm"
               >
-                <span>Ver todos los Proyectos</span>
+                <span>{labels.projectsBtn}</span>
                 <FaArrowRight className="size-3" />
               </Link>
             </div>
           </div>
-
         </div>
       </div>
     </section>

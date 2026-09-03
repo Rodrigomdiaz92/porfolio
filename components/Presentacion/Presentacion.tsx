@@ -3,18 +3,20 @@ import Image from "next/image";
 import { TypeAnimation } from "react-type-animation";
 import Intro from "./HeroSection";
 
-import { heroDataEs } from "@/data/heroData";
+
 import HeroSection from "./HeroSection";
 import Skills from "./Skills";
-import { skillsDataEs } from "@/data/skillsData";
+
+import { useLanguage } from "@/context/LanguageContext";
 
 
 
 export default function Presentacion() {
+  const { heroData,skillsData } = useLanguage();
   return (
     <>
-    <HeroSection data={heroDataEs} />
-    <Skills data={skillsDataEs} />
+    <HeroSection data={heroData} />
+    <Skills data={skillsData} />
     </>
   );
 }

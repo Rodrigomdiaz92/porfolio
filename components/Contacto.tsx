@@ -7,6 +7,7 @@ import {
   FaEnvelope, 
   FaLinkedin, 
   FaGithub, 
+  FaWhatsapp,
   FaFileArrowDown, 
   FaPaperPlane,
   FaRocket 
@@ -26,7 +27,6 @@ export default function Contacto({ data }: ContactoProps) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Aquí puedes conectar EmailJS, Formspree o tu propia API route
     const mailtoLink = `mailto:${data.email}?subject=${encodeURIComponent(
       formData.subject || "Consulta desde Portfolio"
     )}&body=${encodeURIComponent(
@@ -62,13 +62,26 @@ export default function Contacto({ data }: ContactoProps) {
               {/* Tarjeta de Canales */}
               <div className="rounded-lg border border-[var(--color-headers)]/20 bg-[var(--color-secondary)] p-4 shadow-md sm:rounded-xl sm:p-6">
                 <h3 className="font-subtitle text-base font-bold text-[var(--color-text-main)] sm:text-xl">
-                  Canales Directos
+                  {data.channelsTitle}
                 </h3>
                 <p className="font-body mt-1 text-xs text-[var(--color-text-main)]/70 sm:text-sm">
-                  Conéctate conmigo a través de cualquiera de estos medios:
+                  {data.channelsSubtitle}
                 </p>
 
                 <div className="mt-4 flex flex-col gap-3 sm:mt-6">
+                  {/* WhatsApp */}
+                  <a
+                    href={`https://wa.me/${data.whatsapp}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 rounded-lg border border-[var(--color-headers)]/20 bg-[var(--color-primary)]/60 p-3 text-xs transition-colors hover:border-[var(--color-btn-secondary)] sm:text-sm"
+                  >
+                    <FaWhatsapp className="size-4 text-[var(--color-btn-secondary)] shrink-0" />
+                    <span className="font-body text-[var(--color-text-main)]">
+                      WhatsApp: {data.whatsappDisplay}
+                    </span>
+                  </a>
+
                   {/* Email */}
                   <a
                     href={`mailto:${data.email}`}
@@ -89,7 +102,7 @@ export default function Contacto({ data }: ContactoProps) {
                   >
                     <FaLinkedin className="size-4 text-[var(--color-btn-secondary)] shrink-0" />
                     <span className="font-body text-[var(--color-text-main)]">
-                      Perfil de LinkedIn
+                      {data.linkedinLabel}
                     </span>
                   </Link>
 
@@ -102,7 +115,7 @@ export default function Contacto({ data }: ContactoProps) {
                   >
                     <FaGithub className="size-4 text-[var(--color-btn-secondary)] shrink-0" />
                     <span className="font-body text-[var(--color-text-main)]">
-                      Repositorios GitHub
+                      {data.githubLabel}
                     </span>
                   </Link>
                 </div>
@@ -111,10 +124,10 @@ export default function Contacto({ data }: ContactoProps) {
               {/* Tarjeta de Descarga de CV */}
               <div className="mt-4 rounded-lg border border-[var(--color-headers)]/20 bg-[var(--color-secondary)] p-4 shadow-md sm:mt-6 sm:rounded-xl sm:p-6">
                 <h3 className="font-subtitle text-base font-bold text-[var(--color-text-main)] sm:text-lg">
-                  Descargar Currículum
+                  {data.cvTitle}
                 </h3>
                 <p className="font-body mt-1 text-xs text-[var(--color-text-main)]/70 sm:text-sm">
-                  Obtén una copia actualizada en el idioma que prefieras:
+                  {data.cvSubtitle}
                 </p>
 
                 <div className="mt-4 flex gap-2.5 sm:gap-3">
@@ -150,21 +163,21 @@ export default function Contacto({ data }: ContactoProps) {
             </div>
           </div>
 
-          {/* Columna Derecha: Formulario de Envió de Mail */}
+          {/* Columna Derecha: Formulario de Envío de Mail */}
           <div className="md:col-span-7">
             <form
               onSubmit={handleSubmit}
               className="flex flex-col justify-between rounded-lg border border-[var(--color-headers)]/20 bg-[var(--color-secondary)] p-4 shadow-md sm:rounded-xl sm:p-6"
             >
               <h3 className="font-subtitle text-base font-bold text-[var(--color-text-main)] sm:text-xl">
-                Enviar un Mensaje
+                {data.formTitle}
               </h3>
 
               <div className="mt-4 flex flex-col gap-3.5 sm:mt-6 sm:gap-4">
                 {/* Nombre */}
                 <div>
                   <label className="font-subtitle block text-xs font-semibold text-[var(--color-text-main)] sm:text-sm">
-                    Nombre
+                    {data.formLabels.name}
                   </label>
                   <input
                     type="text"
@@ -173,7 +186,7 @@ export default function Contacto({ data }: ContactoProps) {
                     onChange={(e) =>
                       setFormData({ ...formData, name: e.target.value })
                     }
-                    placeholder="Tu nombre completo"
+                    placeholder={data.formLabels.namePlaceholder}
                     className="font-body mt-1 w-full rounded-md border border-[var(--color-headers)]/30 bg-[var(--color-primary)] px-3 py-2 text-xs text-[var(--color-text-main)] outline-none transition-colors focus:border-[var(--color-btn-secondary)] sm:text-sm"
                   />
                 </div>
@@ -181,7 +194,7 @@ export default function Contacto({ data }: ContactoProps) {
                 {/* Email */}
                 <div>
                   <label className="font-subtitle block text-xs font-semibold text-[var(--color-text-main)] sm:text-sm">
-                    Correo Electrónico
+                    {data.formLabels.email}
                   </label>
                   <input
                     type="email"
@@ -190,7 +203,7 @@ export default function Contacto({ data }: ContactoProps) {
                     onChange={(e) =>
                       setFormData({ ...formData, email: e.target.value })
                     }
-                    placeholder="tu@email.com"
+                    placeholder={data.formLabels.emailPlaceholder}
                     className="font-body mt-1 w-full rounded-md border border-[var(--color-headers)]/30 bg-[var(--color-primary)] px-3 py-2 text-xs text-[var(--color-text-main)] outline-none transition-colors focus:border-[var(--color-btn-secondary)] sm:text-sm"
                   />
                 </div>
@@ -198,7 +211,7 @@ export default function Contacto({ data }: ContactoProps) {
                 {/* Asunto */}
                 <div>
                   <label className="font-subtitle block text-xs font-semibold text-[var(--color-text-main)] sm:text-sm">
-                    Asunto
+                    {data.formLabels.subject}
                   </label>
                   <input
                     type="text"
@@ -207,7 +220,7 @@ export default function Contacto({ data }: ContactoProps) {
                     onChange={(e) =>
                       setFormData({ ...formData, subject: e.target.value })
                     }
-                    placeholder="Propuesta de proyecto / Oportunidad laboral"
+                    placeholder={data.formLabels.subjectPlaceholder}
                     className="font-body mt-1 w-full rounded-md border border-[var(--color-headers)]/30 bg-[var(--color-primary)] px-3 py-2 text-xs text-[var(--color-text-main)] outline-none transition-colors focus:border-[var(--color-btn-secondary)] sm:text-sm"
                   />
                 </div>
@@ -215,7 +228,7 @@ export default function Contacto({ data }: ContactoProps) {
                 {/* Mensaje */}
                 <div>
                   <label className="font-subtitle block text-xs font-semibold text-[var(--color-text-main)] sm:text-sm">
-                    Mensaje
+                    {data.formLabels.message}
                   </label>
                   <textarea
                     rows={4}
@@ -224,7 +237,7 @@ export default function Contacto({ data }: ContactoProps) {
                     onChange={(e) =>
                       setFormData({ ...formData, message: e.target.value })
                     }
-                    placeholder="Describe los detalles de tu consulta o proyecto..."
+                    placeholder={data.formLabels.messagePlaceholder}
                     className="font-body mt-1 w-full rounded-md border border-[var(--color-headers)]/30 bg-[var(--color-primary)] px-3 py-2 text-xs text-[var(--color-text-main)] outline-none transition-colors focus:border-[var(--color-btn-secondary)] sm:text-sm"
                   />
                 </div>
@@ -235,7 +248,7 @@ export default function Contacto({ data }: ContactoProps) {
                 type="submit"
                 className="font-body mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[var(--color-btn-secondary)] px-4 py-3 text-xs font-bold text-[var(--color-primary)] transition-opacity hover:opacity-90 sm:text-sm"
               >
-                <span>Enviar Mensaje</span>
+                <span>{data.formLabels.submitButton}</span>
                 <FaPaperPlane className="size-3.5" />
               </button>
             </form>

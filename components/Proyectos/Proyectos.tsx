@@ -11,27 +11,27 @@ interface ProyectosProps {
 }
 
 export default function Proyectos({ data }: ProyectosProps) {
-  const [selectedArea, setSelectedArea] = useState<string>("Todos");
-  const [selectedTech, setSelectedTech] = useState<string>("Todas");
+  const [selectedArea, setSelectedArea] = useState<string>("ALL");
+  const [selectedTech, setSelectedTech] = useState<string>("ALL");
 
   // Extraer dinámicamente las áreas únicas
   const areas = useMemo(() => {
     const list = data.projects.map((p) => p.area);
-    return ["Todos", ...Array.from(new Set(list))];
+    return Array.from(new Set(list));
   }, [data.projects]);
 
   // Extraer dinámicamente las tecnologías únicas
   const technologies = useMemo(() => {
     const list = data.projects.flatMap((p) => p.technologies);
-    return ["Todas", ...Array.from(new Set(list))];
+    return Array.from(new Set(list));
   }, [data.projects]);
 
   // Filtrado dinámico
   const filteredProjects = useMemo(() => {
     return data.projects.filter((project) => {
-      const matchArea = selectedArea === "Todos" || project.area === selectedArea;
+      const matchArea = selectedArea === "ALL" || project.area === selectedArea;
       const matchTech =
-        selectedTech === "Todas" || project.technologies.includes(selectedTech);
+        selectedTech === "ALL" || project.technologies.includes(selectedTech);
       return matchArea && matchTech;
     });
   }, [data.projects, selectedArea, selectedTech]);
@@ -57,15 +57,16 @@ export default function Proyectos({ data }: ProyectosProps) {
           
           {/* Filtro por Área */}
           <div className="flex items-center gap-2">
-            <FaLayerGroup className="size-4 text-[var(--color-btn-secondary)] shrink-0" />
+            <FaLayerGroup className="size-4 shrink-0 text-[var(--color-btn-secondary)]" />
             <span className="font-subtitle text-xs font-semibold text-[var(--color-text-main)] sm:text-sm">
-              Área:
+              {data.areaLabel}
             </span>
             <select
               value={selectedArea}
               onChange={(e) => setSelectedArea(e.target.value)}
               className="font-body w-full rounded border border-[var(--color-headers)]/30 bg-[var(--color-primary)] px-2.5 py-1 text-xs text-[var(--color-text-main)] outline-none transition-colors focus:border-[var(--color-btn-secondary)] sm:w-auto sm:text-sm"
             >
+              <option value="ALL">{data.allAreasLabel}</option>
               {areas.map((area) => (
                 <option key={area} value={area}>
                   {area}
@@ -76,15 +77,16 @@ export default function Proyectos({ data }: ProyectosProps) {
 
           {/* Filtro por Tecnología */}
           <div className="flex items-center gap-2">
-            <FaFilter className="size-3.5 text-[var(--color-btn-secondary)] shrink-0" />
+            <FaFilter className="size-3.5 shrink-0 text-[var(--color-btn-secondary)]" />
             <span className="font-subtitle text-xs font-semibold text-[var(--color-text-main)] sm:text-sm">
-              Tecnología:
+              {data.technologyLabel}
             </span>
             <select
               value={selectedTech}
               onChange={(e) => setSelectedTech(e.target.value)}
               className="font-body w-full rounded border border-[var(--color-headers)]/30 bg-[var(--color-primary)] px-2.5 py-1 text-xs text-[var(--color-text-main)] outline-none transition-colors focus:border-[var(--color-btn-secondary)] sm:w-auto sm:text-sm"
             >
+              <option value="ALL">{data.allTechnologiesLabel}</option>
               {technologies.map((tech) => (
                 <option key={tech} value={tech}>
                   {tech}
@@ -97,14 +99,10 @@ export default function Proyectos({ data }: ProyectosProps) {
 
         {/* Mensaje si no hay resultados */}
         {filteredProjects.length === 0 ? (
-          <div className="mt-12 text-center text-sm font-subtitle text-[var(--color-text-main)]/70">
-            No se encontraron proyectos con los filtros seleccionados.
+          <div className="font-subtitle mt-12 text-center text-sm text-[var(--color-text-main)]/70">
+            {data.emptyStateText}
           </div>
         ) : (
-          /* Contenedor de Tarjetas:
-             - Móvil: Fila horizontal desplazable con scroll-snap.
-             - Desktop (md+): Grid de 2 columnas.
-          */
           <div className="mt-6 flex w-full snap-x snap-mandatory gap-4 overflow-x-auto pb-4 pt-2 md:grid md:grid-cols-2 md:gap-6 md:overflow-visible md:pb-0">
             {filteredProjects.map((project) => (
               <div
@@ -114,8 +112,7 @@ export default function Proyectos({ data }: ProyectosProps) {
                 <div>
                   {/* Vista Previa / Banner */}
                   <div className="relative h-36 w-full overflow-hidden rounded-md bg-[var(--color-primary)] sm:h-44 md:h-48">
-                    <div className="absolute inset-0 flex items-center justify-center text-xs font-subtitle text-[var(--color-headers)]/50">
-                      {/* Placeholder cuando no hay imagen real en public/projects */}
+                    <div className="font-subtitle absolute inset-0 flex items-center justify-center text-xs text-[var(--color-headers)]/50">
                       Preview: {project.title}
                     </div>
                   </div>
@@ -149,14 +146,14 @@ export default function Proyectos({ data }: ProyectosProps) {
                 </div>
 
                 {/* Botón / Enlace */}
-                <div className="mt-6 pt-2 border-t border-[var(--color-headers)]/10">
+                <div className="mt-6 border-t border-[var(--color-headers)]/10 pt-2">
                   <Link
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="font-body inline-flex items-center gap-2 text-xs font-semibold text-[var(--color-btn-secondary)] transition-colors hover:text-[var(--color-headers)] sm:text-sm"
                   >
-                    <span>Ver Proyecto</span>
+                    <span>{data.viewProjectText}</span>
                     <FaArrowUpRightFromSquare className="size-3" />
                   </Link>
                 </div>
