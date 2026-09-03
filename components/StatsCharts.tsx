@@ -25,7 +25,6 @@ interface StatsChartsProps {
   subtitle?: string;
 }
 
-// Paleta de colores para las categorías del gráfico de torta
 const CATEGORY_COLORS = ["#AB64F2", "#3865F2", "#35A9F2", "#7E22CE", "#EC4899"];
 
 export default function StatsCharts({
@@ -35,7 +34,6 @@ export default function StatsCharts({
   subtitle = "Visualización analítica sobre la distribución de mis habilidades y el uso de tecnologías en proyectos.",
 }: StatsChartsProps) {
   
-  // 1. Procesamiento Dinámico de Skills (Gráfico de Torta)
   const dynamicSkillsChart = useMemo(() => {
     const totalSkills = skillsData.categories.reduce(
       (acc, cat) => acc + cat.skills.length,
@@ -56,18 +54,15 @@ export default function StatsCharts({
     });
   }, [skillsData]);
 
-  // 2. Procesamiento Dinámico de Tecnologías en Proyectos (Gráfico de Barras)
   const dynamicProjectsChart = useMemo(() => {
     const techCounts: Record<string, number> = {};
 
-    // Conteo de frecuencia de cada tecnología en los proyectos
     projectsData.projects.forEach((project) => {
       project.technologies.forEach((tech) => {
         techCounts[tech] = (techCounts[tech] || 0) + 1;
       });
     });
 
-    // Convertir objeto a Array, ordenar de mayor a menor y tomar las Top 7
     return Object.entries(techCounts)
       .map(([technology, count]) => ({ technology, count }))
       .sort((a, b) => b.count - a.count)
@@ -80,7 +75,6 @@ export default function StatsCharts({
       className="w-full bg-[var(--color-primary)] px-3 py-10 sm:px-6 sm:py-16 lg:px-8"
     >
       <div className="mx-auto max-w-7xl">
-        {/* Encabezado */}
         <div className="flex flex-col items-center text-center">
           <h2 className="font-h2 text-2xl font-bold tracking-tight text-[var(--color-headers)] sm:text-4xl">
             {title}
@@ -90,10 +84,9 @@ export default function StatsCharts({
           </p>
         </div>
 
-        {/* Grid de 2 Tarjetas */}
         <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:gap-8">
           
-          {/* Tarjeta 1: Gráfico de Torta (Skills por Categoría) */}
+          {/* Tarjeta 1: Gráfico de Torta */}
           <div className="flex flex-col justify-between rounded-lg border border-[var(--color-headers)]/20 bg-[var(--color-secondary)] p-4 shadow-md sm:rounded-xl sm:p-6 sm:shadow-lg">
             <div>
               <div className="flex items-center justify-between border-b border-[var(--color-headers)]/10 pb-3">
@@ -105,7 +98,6 @@ export default function StatsCharts({
                 </div>
               </div>
 
-              {/* Contenedor del Gráfico de Torta */}
               <div className="mt-4 h-64 w-full">
                 <ResponsiveContainer width="100%" height="100%">
                   <PieChart>
@@ -130,13 +122,12 @@ export default function StatsCharts({
                         color: "#FFFFFF",
                         fontSize: "12px",
                       }}
-                      formatter={(value: number) => [`${value}%`, "Proporción"]}
+                      formatter={(value?: unknown) => [`${value ?? 0}%`, "Proporción"]}
                     />
                   </PieChart>
                 </ResponsiveContainer>
               </div>
 
-              {/* Leyendas explicativas */}
               <div className="mt-2 flex flex-wrap justify-center gap-3">
                 {dynamicSkillsChart.map((item) => (
                   <div key={item.name} className="flex items-center gap-1.5">
@@ -152,7 +143,6 @@ export default function StatsCharts({
               </div>
             </div>
 
-            {/* Botón de acción */}
             <div className="mt-6 pt-4 border-t border-[var(--color-headers)]/10">
               <Link
                 href="#skills"
@@ -164,7 +154,7 @@ export default function StatsCharts({
             </div>
           </div>
 
-          {/* Tarjeta 2: Gráfico de Barras (Frecuencia de Tecnologías) */}
+          {/* Tarjeta 2: Gráfico de Barras */}
           <div className="flex flex-col justify-between rounded-lg border border-[var(--color-headers)]/20 bg-[var(--color-secondary)] p-4 shadow-md sm:rounded-xl sm:p-6 sm:shadow-lg">
             <div>
               <div className="flex items-center justify-between border-b border-[var(--color-headers)]/10 pb-3">
@@ -176,7 +166,6 @@ export default function StatsCharts({
                 </div>
               </div>
 
-              {/* Contenedor del Gráfico de Barras */}
               <div className="mt-4 h-64 w-full">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart
@@ -202,7 +191,7 @@ export default function StatsCharts({
                         color: "#FFFFFF",
                         fontSize: "12px",
                       }}
-                      formatter={(value: number) => [`${value} proyecto(s)`, "Frecuencia"]}
+                      formatter={(value?: unknown) => [`${value ?? 0} proyecto(s)`, "Frecuencia"]}
                     />
                     <Bar dataKey="count" fill="#35A9F2" radius={[4, 4, 0, 0]} />
                   </BarChart>
@@ -210,7 +199,6 @@ export default function StatsCharts({
               </div>
             </div>
 
-            {/* Botón de acción */}
             <div className="mt-6 pt-4 border-t border-[var(--color-headers)]/10">
               <Link
                 href="#proyectos"
