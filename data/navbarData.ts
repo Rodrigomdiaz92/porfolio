@@ -14,6 +14,7 @@ export interface NavbarData {
 export const navbarDataEs: NavbarData = {
   logoText: "< RodrigoDíaz />",
   links: [
+    { id: "presentacion", label: "Presentación", href: "#presentacion" },
     { id: "skills", label: "Skills", href: "#skills" },
     { id: "estadisticas", label: "Métricas", href: "#estadisticas" },
     { id: "proyectos", label: "Proyectos", href: "#proyectos" },
@@ -25,6 +26,7 @@ export const navbarDataEs: NavbarData = {
 export const navbarDataEn: NavbarData = {
   logoText: "< RodrigoDíaz />",
   links: [
+    { id: "presentacion", label: "Presentation", href: "#presentacion" },
     { id: "skills", label: "Skills", href: "#skills" },
     { id: "estadisticas", label: "Metrics", href: "#estadisticas" },
     { id: "proyectos", label: "Projects", href: "#proyectos" },

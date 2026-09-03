@@ -15,11 +15,11 @@ export const heroDataEs: HeroData = {
   greeting: "Hola, mi nombre es",
   name: "Rodrigo Díaz",
   titles: [
-    "Frontend & React Developer",
+    "Frontend | React Developer",
     "Next.js & UX-UI Specialist",
   ],
   description:
-    "Desarrollador Frontend con más de 4 años de experiencia creando interfaces web escalables, responsivas y de alto rendimiento. Especializado en React.js, Next.js, TypeScript y diseño UX/UI con Figma. Integrador activo de herramientas de IA para optimización de flujos de trabajo.",
+    "Desarrollador Frontend creandor de interfaces web escalables, responsivas y de alto rendimiento. Especializado en React.js, Next.js, TypeScript y diseño UX/UI con Figma.",
   primaryBtnText: "Ver Proyectos",
   primaryBtnHref: "#proyectos",
   secondaryBtnText: "Contactar",
@@ -36,7 +36,7 @@ export const heroDataEn: HeroData = {
     "Next.js & UX-UI Specialist",
   ],
   description:
-    "Frontend Developer with over 4 years of experience building scalable, responsive, and high-performance web interfaces. Specialized in React.js, Next.js, TypeScript, and UX/UI design with Figma. Active integrator of AI tools to optimize development workflows.",
+    "Frontend Developer experience building scalable, responsive, and high-performance web interfaces. Specialized in React.js, Next.js, TypeScript, and UX/UI design with Figma.",
   primaryBtnText: "View Projects",
   primaryBtnHref: "#proyectos",
   secondaryBtnText: "Get in Touch",

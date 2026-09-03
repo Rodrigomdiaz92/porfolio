@@ -8,6 +8,8 @@ import { projectsDataEs, projectsDataEn } from "@/data/projectsData";
 import { carreraDataEs, carreraDataEn } from "@/data/carreraData";
 import { contactoDataEs, contactoDataEn } from "@/data/contactoData";
 import { footerDataEs, footerDataEn } from "@/data/footerData";
+import { certificacionesDataEs, certificacionesDataEn } from "@/data/certificacionesData";
+import { estudiosDataEs, estudiosDataEn } from "@/data/estudiosData";
 
 interface LanguageContextType {
   language: Language;
@@ -19,6 +21,8 @@ interface LanguageContextType {
   carreraData: typeof carreraDataEs;
   contactoData: typeof contactoDataEs;
   footerData: typeof footerDataEs;
+  certificacionesData: typeof certificacionesDataEs;
+  estudiosData: typeof estudiosDataEs;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -33,6 +37,8 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const carreraData = language === "es" ? carreraDataEs : carreraDataEn;
   const contactoData = language === "es" ? contactoDataEs : contactoDataEn;
   const footerData = language === "es" ? footerDataEs : footerDataEn;
+  const certificacionesData = language === "es" ? certificacionesDataEs : certificacionesDataEn;
+  const estudiosData = language === "es" ? estudiosDataEs : estudiosDataEn;
 
   return (
     <LanguageContext.Provider
@@ -46,6 +52,8 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
         carreraData,
         contactoData,
         footerData,
+        certificacionesData,
+        estudiosData,
       }}
     >
       {children}
