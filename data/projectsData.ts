@@ -148,7 +148,7 @@ export const projectsDataEn: ProjectsSectionData = {
       area: "Content creation / Marketing",
       description: "Managed social media content for Sailing The World, focusing on visual storytelling, audience engagement, and brand consistency. Responsibilities included content selection, post structuring, captions, and maintaining a cohesive aesthetic aligned with the brand identity. The goal was to strengthen online presence and connect with a travel and sailing-oriented audience.",
       technologies: ["Marketing", "Virtual Assistant", "Content Creation", "Community Management"],
-      link: "#",
+      link: "https://www.instagram.com/sailingthe.world/",
       imageSrc: "/contenido/proyectos/sailinginsta.png",
     },
     {
@@ -157,8 +157,8 @@ export const projectsDataEn: ProjectsSectionData = {
       area: "WordPress / Web Development",
       description: "Developed and structured the website SailingTheWorld.net using WordPress. The project focused on creating a clean, content-driven platform to showcase sailing experiences, travel stories, and community engagement. Responsibilities included page structure, content organization, image integration, and ensuring a user-friendly, mobile-responsive experience. The platform was built to be easily self-managed, allowing ongoing content updates without technical dependency.",
       technologies: ["WordPress", "Content Creation", "WordPress Admin", "Web Design", "Virtual Assistant", "Responsive Design", "SEO Strategies"],
-      link: "#",
-      imageSrc: "/projects/portfolio.jpg",
+      link: "https://silver-skunk-575613.hostingersite.com/",
+      imageSrc: "/contenido/proyectos/sailingwp.png",
     },
     {
       id: "e-commerce-store",
