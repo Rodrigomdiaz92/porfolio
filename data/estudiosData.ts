@@ -19,19 +19,19 @@ export const estudiosDataEs: EstudiosSectionData = {
   education: [
     {
       id: "edu-1",
-      degree: "Tecnicatura Universitaria en Programación",
-      institution: "Universidad Tecnológica Nacional (UTN)",
+      degree: "Tecnicatura en Desarrollo de Software",
+      institution: "ISTEA - Educacion IT",
       period: "2023 - Presente",
       status: "En curso",
-      description: "Enfoque en arquitectura de software, bases de datos, estructuras de datos avanzadas y desarrollo web.",
-    },
+      description: "Formación integral en desarrollo Full Stack y móvil (Android), arquitectura de microservicios, APIs y gestión de bases de datos (SQL/NoSQL). Enfoque en prácticas modernas con IA (Vibe Coding/LLMs), DevOps, CI/CD, testing, UX/UI y gestión ágil de proyectos con Git."
+      },
     {
       id: "edu-2",
-      degree: "Desarrollo Web Full Stack",
-      institution: "Bootcamp / Especialización",
-      period: "2022 - 2023",
+      degree: "Ingles",
+      institution: " Profesional / Avanzado",
+      period: "Actualidad",
       status: "Completado",
-      description: "Formación intensiva basada en proyectos reales, metodologías ágiles (Scrum), React, Node.js y gestión de bases de datos.",
+      description: "comunicación oral/escrita y documentación técnica",
     },
   ],
 };
@@ -42,19 +42,19 @@ export const estudiosDataEn: EstudiosSectionData = {
   education: [
     {
       id: "edu-1",
-      degree: "Associate Degree in Computer Programming",
-      institution: "National Technological University (UTN)",
+      degree: "Associate Degree in Software Development",
+      institution: "ISTEA - Educacion IT",
       period: "2023 - Present",
       status: "In Progress",
-      description: "Focused on software architecture, databases, advanced data structures, and web development.",
+      description: "Comprehensive training in Full Stack and mobile (Android) development, microservices architecture, APIs, and database management (SQL/NoSQL). Focused on modern AI workflows (Vibe Coding/LLMs), DevOps, CI/CD, testing, UX/UI, and agile project management using Git."
     },
     {
       id: "edu-2",
-      degree: "Full Stack Web Development",
-      institution: "Bootcamp / Specialization",
-      period: "2022 - 2023",
+      degree: "English",
+      institution: "Professional / Advanced",
+      period: "Current",
       status: "Completed",
-      description: "Intensive hands-on training built on real projects, agile methodologies (Scrum), React, Node.js, and database management.",
+      description: "Oral/written communication and technical documentation",
     },
   ],
 };

@@ -16,68 +16,136 @@ export interface CarreraSectionData {
 
 export const carreraDataEs: CarreraSectionData = {
   title: "Carrera & Experiencia",
-  subtitle: "Trayectoria profesional enfocada en el desarrollo web, liderazgo técnico, mentoría y gestión de productos digitales.",
+  subtitle:
+    "Trayectoria profesional enfocada en desarrollo web, optimización de rendimiento, mentoría técnica y asesoría comercial.",
   items: [
     {
-      id: "sailing-the-world",
-      role: "Lead Frontend Developer & Digital Product Manager",
-      company: "Sailing The World",
-      startDate: "2023",
-      endDate: "Presente",
-      description: "Liderazgo técnico en la creación del portal web y sistema de reservas para flota de catamaranes en las Islas San Blas. Optimización UX/UI y rendimiento del sitio.",
-      skills: ["React.js", "Next.js", "TypeScript", "Tailwind CSS", "UX/UI Design", "SEO"],
-    },
-    {
-      id: "frontend-mentor",
-      role: "Mentor & Tutor Frontend Web",
-      company: "Educación IT / Cursos Independientes",
+      id: "freelance-dev",
+      role: "Desarrollador Frontend Freelance",
+      company: "Proyectos Independientes",
       startDate: "2022",
       endDate: "Presente",
-      description: "Acompañamiento a estudiantes en el aprendizaje de tecnologías modernas web, buenas prácticas de código, Git Flow y preparación para inserción laboral.",
-      skills: ["JavaScript (ES6+)", "React.js", "HTML5 & CSS3", "Git & GitHub", "Clean Code"],
+      description:
+        "Desarrollo de aplicaciones web dinámicas con React y Next.js incorporando asistentes de IA para optimizar el código en un 30%. Optimización del rendimiento e interfaces reduciendo la tasa de rebote. Construcción de sistemas de componentes desde Figma e integración de APIs RESTful y Firebase.",
+      skills: [
+        "React.js",
+        "Next.js",
+        "JavaScript (ES6+)",
+        "REST APIs",
+        "Firebase",
+        "Figma",
+        "IA Assistants",
+      ],
     },
     {
-      id: "freelance-dev",
-      role: "Desarrollador Web Freelance",
-      company: "Proyectos Independientes",
+      id: "mentor-digital-house",
+      role: "Mentor de Frontend & Competencias Digitales",
+      company: "Digital House",
+      startDate: "2022",
+      endDate: "2025",
+      description:
+        "Dictado de formación técnica en desarrollo frontend e inducción a herramientas de IA para comisiones de más de 50 alumnos. Planificación de tareas y optimización de flujos de trabajo en equipos multidisciplinarios bajo metodologías ágiles.",
+      skills: [
+        "React.js",
+        "JavaScript",
+        "HTML5 & CSS3",
+        "IA Tools",
+        "Agile / Scrum",
+        "Liderazgo",
+      ],
+    },
+    {
+      id: "tutor-coderhouse",
+      role: "Tutor y Mentor de Proyectos",
+      company: "Coderhouse",
       startDate: "2021",
       endDate: "2023",
-      description: "Diseño y desarrollo de sitios e-commerce, páginas de aterrizaje y paneles administrativos a medida para clientes internacionales de diversos sectores.",
-      skills: ["React.js", "REST APIs", "Firebase", "Bootstrap", "Responsive Design"],
+      description:
+        "Coordinación, revisión y mentoría de más de 60 proyectos centrados en la experiencia de usuario y diseño de interfaces (Figma).",
+      skills: ["UX/UI Design", "Figma", "Feedback Técnico", "Mentoring"],
+    },
+    {
+      id: "compumundo-asesor",
+      role: "Asesor Comercial Senior",
+      company: "Compumundo",
+      startDate: "2017",
+      endDate: "2021",
+      description:
+        "Asesoramiento especializado en productos tecnológicos y soporte de primer nivel en entornos comerciales de alta demanda.",
+      skills: [
+        "Atención al Cliente",
+        "Soporte Técnico",
+        "Productos Tecnológicos",
+        "Ventas",
+      ],
     },
   ],
 };
 
 export const carreraDataEn: CarreraSectionData = {
   title: "Career & Experience",
-  subtitle: "Professional trajectory focused on web development, technical leadership, mentoring, and digital product management.",
+  subtitle:
+    "Professional trajectory focused on web development, performance optimization, technical mentoring, and commercial advisory.",
   items: [
     {
-      id: "sailing-the-world",
-      role: "Lead Frontend Developer & Digital Product Manager",
-      company: "Sailing The World",
-      startDate: "2023",
-      endDate: "Present",
-      description: "Technical leadership in creating the web portal and booking system for a catamaran fleet in San Blas Islands. UX/UI optimization and site performance enhancement.",
-      skills: ["React.js", "Next.js", "TypeScript", "Tailwind CSS", "UX/UI Design", "SEO"],
-    },
-    {
-      id: "frontend-mentor",
-      role: "Frontend Web Mentor & Tutor",
-      company: "Educación IT / Independent Courses",
+      id: "freelance-dev",
+      role: "Freelance Frontend Developer",
+      company: "Independent Projects",
       startDate: "2022",
       endDate: "Present",
-      description: "Guiding students through modern web technologies, code best practices, Git Flow, and preparing them for job market insertion.",
-      skills: ["JavaScript (ES6+)", "React.js", "HTML5 & CSS3", "Git & GitHub", "Clean Code"],
+      description:
+        "Development of dynamic web applications using React and Next.js, integrating AI assistants to optimize code efficiency by 30%. UI performance optimization to decrease bounce rate. Building component systems from Figma designs and integrating RESTful APIs and Firebase.",
+      skills: [
+        "React.js",
+        "Next.js",
+        "JavaScript (ES6+)",
+        "REST APIs",
+        "Firebase",
+        "Figma",
+        "AI Assistants",
+      ],
     },
     {
-      id: "freelance-dev",
-      role: "Freelance Web Developer",
-      company: "Independent Projects",
+      id: "mentor-digital-house",
+      role: "Frontend & Digital Skills Mentor",
+      company: "Digital House",
+      startDate: "2022",
+      endDate: "2025",
+      description:
+        "Provided technical training in frontend development and onboarding to AI tools for cohorts of over 50 students. Task planning and workflow optimization in multidisciplinary teams using agile methodologies.",
+      skills: [
+        "React.js",
+        "JavaScript",
+        "HTML5 & CSS3",
+        "AI Tools",
+        "Agile / Scrum",
+        "Leadership",
+      ],
+    },
+    {
+      id: "tutor-coderhouse",
+      role: "Project Tutor & Mentor",
+      company: "Coderhouse",
       startDate: "2021",
       endDate: "2023",
-      description: "Design and development of custom e-commerce stores, landing pages, and admin dashboards for international clients across various industries.",
-      skills: ["React.js", "REST APIs", "Firebase", "Bootstrap", "Responsive Design"],
+      description:
+        "Coordination, code review, and mentoring for over 60 projects focused on user experience and interface design (Figma).",
+      skills: ["UX/UI Design", "Figma", "Technical Feedback", "Mentoring"],
+    },
+    {
+      id: "compumundo-asesor",
+      role: "Senior Commercial Advisor",
+      company: "Compumundo",
+      startDate: "2017",
+      endDate: "2021",
+      description:
+        "Specialized advisory on tech products and first-line technical support in high-demand retail environments.",
+      skills: [
+        "Customer Service",
+        "Technical Support",
+        "Tech Products",
+        "Sales",
+      ],
     },
   ],
 };

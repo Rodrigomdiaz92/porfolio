@@ -4,7 +4,17 @@ import { useState, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ProjectsSectionData } from "@/data/projectsData";
-import { FaArrowUpRightFromSquare, FaFilter, FaLayerGroup } from "react-icons/fa6";
+import { FaArrowUpRightFromSquare, FaFilter, FaLayerGroup, FaXmark, FaMagnifyingGlassPlus } from "react-icons/fa6";
+
+interface ProjectItem {
+  id: string;
+  title: string;
+  description: string;
+  area: string;
+  technologies: string[];
+  imageSrc: string;
+  link: string;
+}
 
 interface ProyectosProps {
   data: ProjectsSectionData;
@@ -13,6 +23,9 @@ interface ProyectosProps {
 export default function Proyectos({ data }: ProyectosProps) {
   const [selectedArea, setSelectedArea] = useState<string>("ALL");
   const [selectedTech, setSelectedTech] = useState<string>("ALL");
+  
+  // Estado para controlar el proyecto seleccionado en el Modal/Lightbox
+  const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
 
   // Extraer dinámicamente las áreas únicas
   const areas = useMemo(() => {
@@ -110,11 +123,30 @@ export default function Proyectos({ data }: ProyectosProps) {
                 className="group relative flex w-[82vw] shrink-0 snap-center flex-col justify-between overflow-hidden rounded-lg border border-[var(--color-headers)]/20 bg-[var(--color-secondary)] p-4 shadow-md transition-all duration-300 hover:border-[var(--color-btn-secondary)]/50 sm:w-[320px] md:w-full md:rounded-xl md:p-6 md:shadow-lg hover:md:-translate-y-1"
               >
                 <div>
-                  {/* Vista Previa / Banner */}
-                  <div className="relative h-36 w-full overflow-hidden rounded-md bg-[var(--color-primary)] sm:h-44 md:h-48">
-                    <div className="font-subtitle absolute inset-0 flex items-center justify-center text-xs text-[var(--color-headers)]/50">
-                      Preview: {project.title}
-                    </div>
+                  {/* Vista Previa / Banner con opción de ampliar */}
+                  <div 
+                    onClick={() => project.imageSrc && setSelectedProject(project)}
+                    className="relative h-36 w-full cursor-pointer overflow-hidden rounded-md bg-[var(--color-primary)] sm:h-44 md:h-48"
+                  >
+                    {project.imageSrc ? (
+                      <>
+                        <Image
+                          src={project.imageSrc}
+                          alt={project.title}
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          className="object-cover transition-transform duration-300 group-hover:scale-105"
+                        />
+                        {/* Overlay al pasar el cursor */}
+                        <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition-opacity duration-300 hover:opacity-100">
+                          <FaMagnifyingGlassPlus className="size-6 text-white" />
+                        </div>
+                      </>
+                    ) : (
+                      <div className="font-subtitle flex h-full w-full items-center justify-center text-xs text-[var(--color-headers)]/50">
+                        Sin vista previa
+                      </div>
+                    )}
                   </div>
 
                   {/* Área Badge */}
@@ -163,6 +195,80 @@ export default function Proyectos({ data }: ProyectosProps) {
         )}
 
       </div>
+
+      {/* Modal / Lightbox Detallado */}
+      {selectedProject && (
+        <div 
+          onClick={() => setSelectedProject(null)}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-3 backdrop-blur-sm sm:p-6"
+        >
+          <div 
+            onClick={(e) => e.stopPropagation()} 
+            className="relative flex max-h-[92vh] w-full max-w-3xl flex-col overflow-y-auto rounded-xl border border-[var(--color-headers)]/20 bg-[var(--color-secondary)] p-4 shadow-2xl sm:p-6"
+          >
+            {/* Botón Cerrar */}
+            <button
+              onClick={() => setSelectedProject(null)}
+              className="absolute right-3 top-3 z-20 rounded-full bg-[var(--color-primary)]/80 p-2 text-[var(--color-text-main)] transition-colors hover:bg-[var(--color-btn-secondary)] hover:text-white"
+            >
+              <FaXmark className="size-5" />
+            </button>
+
+            {/* Imagen Ampliada */}
+            <div className="relative h-56 w-full shrink-0 overflow-hidden rounded-lg bg-[var(--color-primary)] sm:h-80 md:h-96">
+              <Image
+                src={selectedProject.imageSrc}
+                alt={selectedProject.title}
+                fill
+                className="object-contain"
+              />
+            </div>
+
+            {/* Contenido Ampliado */}
+            <div className="mt-4 flex flex-col">
+              {/* Área Badge */}
+              <span className="font-subtitle text-xs font-semibold text-[var(--color-btn-secondary)] uppercase tracking-wider">
+                {selectedProject.area}
+              </span>
+
+              {/* Título */}
+              <h3 className="font-subtitle mt-1 text-xl font-bold text-[var(--color-text-main)] sm:text-2xl">
+                {selectedProject.title}
+              </h3>
+
+              {/* Descripción completa */}
+              <p className="font-body mt-3 text-xs leading-relaxed text-[var(--color-text-main)]/90 sm:text-base">
+                {selectedProject.description}
+              </p>
+
+              {/* Lista de Tecnologías */}
+              <div className="mt-4 flex flex-wrap gap-2">
+                {selectedProject.technologies.map((tech) => (
+                  <span
+                    key={tech}
+                    className="font-body rounded border border-[var(--color-headers)]/30 bg-[var(--color-primary)] px-2.5 py-1 text-xs font-medium text-[var(--color-text-main)]"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+
+              {/* Botón de Enlace al Proyecto */}
+              <div className="mt-6 flex justify-end border-t border-[var(--color-headers)]/10 pt-4">
+                <Link
+                  href={selectedProject.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-body inline-flex items-center gap-2 rounded-lg bg-[var(--color-btn-secondary)] px-4 py-2 text-xs font-semibold text-white transition-opacity hover:opacity-90 sm:text-sm"
+                >
+                  <span>{data.viewProjectText}</span>
+                  <FaArrowUpRightFromSquare className="size-3.5" />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
