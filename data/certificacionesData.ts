@@ -26,43 +26,50 @@ export const certificacionesDataEs: CertificacionesSectionData = {
     },
     {
       id: "cert-2",
-      title: "React.js",
-      issuer: "Coderhouse",
-      year: "2023",
-      imageSrc: "/contenido/certificaciones/react.jpg",
-      credentialUrl: "#",
+      title: "AI Starter Pack",
+      issuer: "Digital House",
+      year: "2024",
+      imageSrc: "/contenido/certificaciones/aistarterpackdh.jpg",
     },
     {
       id: "cert-3",
+      title: "React.js",
+      issuer: "Coderhouse",
+      year: "2022",
+      imageSrc: "/contenido/certificaciones/react.jpg",
+      
+    },
+    {
+      id: "cert-4",
       title: "UI/UX Design",
       issuer: "Coderhouse",
       year: "2021",
       imageSrc: "/contenido/certificaciones/diseño ux-ui avanzado.jpg",
-      credentialUrl: "#",
+      
     },
     {
-      id: "cert-4",
+      id: "cert-5",
       title: "JavaScript",
       issuer: "Coderhouse",
       year: "2022",
       imageSrc: "/contenido/certificaciones/javascript.jpg",
-      credentialUrl: "#",
+      
     },
     {
-      id: "cert-5",
+      id: "cert-6",
       title: "Photoshop & Illustrator",
       issuer: "Coderhouse",
       year: "2023",
       imageSrc: "/contenido/certificaciones/photoshop.jpg",
-      credentialUrl: "#",
+      
     },
     {
-      id: "cert-6",
+      id: "cert-7",
       title: "Web Developer",
       issuer: "Coderhouse",
-      year: "2022",
-      imageSrc: "/contenido/certificaciones/webdeveloper.jpg",
-      credentialUrl: "#",
+      year: "2021",
+      imageSrc: "/contenido/certificaciones/desarrollo web.jpg",
+      
     },
     
     
