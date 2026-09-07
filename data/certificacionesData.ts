@@ -36,7 +36,7 @@ export const certificacionesDataEs: CertificacionesSectionData = {
       title: "React.js",
       issuer: "Coderhouse",
       year: "2022",
-      imageSrc: "/contenido/certificaciones/react.jpg",
+      imageSrc: "/contenido/certificaciones/reactjs.png",
       
     },
     {
@@ -44,7 +44,7 @@ export const certificacionesDataEs: CertificacionesSectionData = {
       title: "UI/UX Design",
       issuer: "Coderhouse",
       year: "2021",
-      imageSrc: "/contenido/certificaciones/diseño ux-ui avanzado.jpg",
+      imageSrc: "/contenido/certificaciones/diseñouxuiavanzado.png",
       
     },
     {
@@ -52,7 +52,7 @@ export const certificacionesDataEs: CertificacionesSectionData = {
       title: "JavaScript",
       issuer: "Coderhouse",
       year: "2022",
-      imageSrc: "/contenido/certificaciones/javascript.jpg",
+      imageSrc: "/contenido/certificaciones/javascript.png",
       
     },
     {
@@ -60,7 +60,7 @@ export const certificacionesDataEs: CertificacionesSectionData = {
       title: "Photoshop & Illustrator",
       issuer: "Coderhouse",
       year: "2023",
-      imageSrc: "/contenido/certificaciones/photoshop.jpg",
+      imageSrc: "/contenido/certificaciones/photoshop.png",
       
     },
     {
@@ -68,7 +68,7 @@ export const certificacionesDataEs: CertificacionesSectionData = {
       title: "Web Developer",
       issuer: "Coderhouse",
       year: "2021",
-      imageSrc: "/contenido/certificaciones/desarrollo web.jpg",
+      imageSrc: "/contenido/certificaciones/desarrolloweb.png",
       
     },
     
@@ -99,7 +99,7 @@ export const certificacionesDataEn: CertificacionesSectionData = {
       title: "React.js",
       issuer: "Coderhouse",
       year: "2022",
-      imageSrc: "/contenido/certificaciones/react.jpg",
+      imageSrc: "/contenido/certificaciones/reactjs.png",
       
     },
     {
@@ -107,7 +107,7 @@ export const certificacionesDataEn: CertificacionesSectionData = {
       title: "UI/UX Design",
       issuer: "Coderhouse",
       year: "2021",
-      imageSrc: "/contenido/certificaciones/diseño ux-ui avanzado.jpg",
+      imageSrc: "/contenido/certificaciones/diseñouxuiavanzado.png",
       
     },
     {
@@ -115,7 +115,7 @@ export const certificacionesDataEn: CertificacionesSectionData = {
       title: "JavaScript",
       issuer: "Coderhouse",
       year: "2022",
-      imageSrc: "/contenido/certificaciones/javascript.jpg",
+      imageSrc: "/contenido/certificaciones/javascript.png",
       
     },
     {
@@ -123,7 +123,7 @@ export const certificacionesDataEn: CertificacionesSectionData = {
       title: "Photoshop & Illustrator",
       issuer: "Coderhouse",
       year: "2023",
-      imageSrc: "/contenido/certificaciones/photoshop.jpg",
+      imageSrc: "/contenido/certificaciones/photoshop.png",
       
     },
     {
@@ -131,7 +131,7 @@ export const certificacionesDataEn: CertificacionesSectionData = {
       title: "Web Developer",
       issuer: "Coderhouse",
       year: "2021",
-      imageSrc: "/contenido/certificaciones/desarrollo web.jpg",
+      imageSrc: "/contenido/certificaciones/desarrolloweb.png",
       
     },
   ],
