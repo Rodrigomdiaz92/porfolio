@@ -6,7 +6,7 @@ import "./globals.css";
 import NavbarWrapper from "@/components/layout/NavbarWrapper";
 import FooterWrapper from "@/components/layout/FooterWrapper";
 import JsonLd from "@/components/seo/JsonLd";
-
+import { Analytics } from "@vercel/analytics/next"
 
 const zenDots = Zen_Dots({
   weight: "400",
@@ -116,6 +116,7 @@ export default function RootLayout({
           <FooterWrapper />
         </LanguageProvider>
         <JsonLd />
+        <Analytics />
       </body>
     </html>
   );
